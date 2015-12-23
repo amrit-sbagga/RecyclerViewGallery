@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 .getExternalStorageDirectory()
                 .getAbsolutePath();
         Log.i(TAG, ""+externalStorageDirectoryPath);
-        //loadinh images from camera folder
+        //loading images from camera folder
         String targetPath = externalStorageDirectoryPath + "/DCIM/Camera/";//
 
         Toast.makeText(getApplicationContext(), targetPath, Toast.LENGTH_LONG).show();

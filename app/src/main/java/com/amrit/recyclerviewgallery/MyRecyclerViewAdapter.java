@@ -47,10 +47,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.setItemUri(targetUri.getPath());
 
         if (targetUri != null){
-
             try {
-                //! CAUTION !
-                //I'm not sure is it properly to load bitmap here!
                 holder.setImageView(loadScaledBitmap(targetUri));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
