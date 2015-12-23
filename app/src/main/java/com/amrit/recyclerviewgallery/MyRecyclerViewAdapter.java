@@ -2,7 +2,6 @@ package com.amrit.recyclerviewgallery;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.io.FileNotFoundException;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,14 +48,18 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         if (targetUri != null){
             try {
-                holder.setImageView(loadScaledBitmap(targetUri));
-            } catch (FileNotFoundException e) {
+
+                mainActivity.textInfo.append(targetUri.getLastPathSegment() + "\n");
+                //holder.setImageView(loadScaledBitmap(targetUri));
+                Picasso.with(context).load(targetUri).error(R.drawable.android_img).resize(150,150)
+                        .into(holder.imageView);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private Bitmap loadScaledBitmap(Uri targetUri) throws  FileNotFoundException{
+   /* private Bitmap loadScaledBitmap(Uri targetUri) throws  FileNotFoundException{
 
         mainActivity.textInfo.append(targetUri.getLastPathSegment() + "\n");
 
@@ -81,9 +85,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 context.getContentResolver().openInputStream(targetUri), null, options);
 
         return bm;
-    }
+    }*/
 
-    public int calculateInSampleSize(BitmapFactory.Options options,
+   /* public int calculateInSampleSize(BitmapFactory.Options options,
                                      int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
@@ -106,7 +110,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
 
         return inSampleSize;
-    }
+    }*/
 
     @Override
     public int getItemCount() {
